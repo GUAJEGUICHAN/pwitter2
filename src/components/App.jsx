@@ -4,20 +4,16 @@ import { authService } from '../fbInstance';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [init, setInit] = useState(false);
+  const [userObj, setUserObj] = useState(null);
   useEffect(() => {
     authService.onAuthStateChanged(authService.getAuth(), (user) => {
-      if (user) {
-        setIsLoggedIn(true)
-      } else {
-        setIsLoggedIn(false)
-      }
+      setUserObj(user)
       setInit(true);
     })
   }, [])
   return (
     <div>
-      {
-        init ? <AppRouter isLoggedIn={isLoggedIn} /> : "로딩중...."
+      {init ? <AppRouter isLoggedIn={userObj ? true : false} userObj={userObj} /> : "로딩중...."
       }
     </div>);
 }

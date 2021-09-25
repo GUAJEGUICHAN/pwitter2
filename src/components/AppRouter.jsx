@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Auth from '../routes/Auth';
 import Profile from '../routes/Profile';
 import Home from '../routes/Home';
-const AppRouter = ({ isLoggedIn }) => {
+const AppRouter = ({ isLoggedIn, userObj }) => {
 
     return (
         <BrowserRouter>
@@ -12,7 +12,7 @@ const AppRouter = ({ isLoggedIn }) => {
             {isLoggedIn ? (
                 <Switch>
                     <Route path="/" exact>
-                        <Home />
+                        <Home userObj={userObj} />
                     </Route>
                     <Route path="/profile" exact>
                         <Profile />
